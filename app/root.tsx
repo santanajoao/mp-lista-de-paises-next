@@ -8,10 +8,12 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import tailwindCss from './tailwind.css';
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
   { rel: 'icon', href: '/world-logo.svg', type: 'image/svg' },
+  { rel: 'stylesheet', href: tailwindCss },
 ];
 
 export default function App() {

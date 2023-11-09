@@ -6,6 +6,6 @@ export const meta: MetaFunction = () => [
 
 export default function Index() {
   return (
-    <main>Lista de países</main>
+    <main>Root page</main>
   );
 }

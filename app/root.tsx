@@ -27,7 +27,19 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="text-gray-800 bg-gray-100">
+        <header className="bg-white p-6">
+          <div className="m-auto max-w-[1366px] flex items-center">
+            <img
+              className="h-14 aspect-square mr-2"
+              src="/world-logo.svg"
+              alt="Logo da página. Representação simplificada do globo terrestre."
+            />
+
+            <span className="text-2xl font-bold">Países do mundo</span>
+          </div>
+        </header>
+
         <Outlet />
         <ScrollRestoration />
         <Scripts />

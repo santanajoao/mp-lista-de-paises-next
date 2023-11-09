@@ -9,11 +9,13 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import tailwindCss from './tailwind.css';
+import mainCss from './main.css';
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
   { rel: 'icon', href: '/world-logo.svg', type: 'image/svg' },
   { rel: 'stylesheet', href: tailwindCss },
+  { rel: 'stylesheet', href: mainCss },
 ];
 
 export default function App() {

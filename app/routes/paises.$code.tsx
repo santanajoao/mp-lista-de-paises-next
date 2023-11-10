@@ -10,7 +10,7 @@ import type { CountryDetails } from "~/types/country";
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   const countryName = data?.country.translations.por.common;
   return [
-    { title: countryName ?? 'Detalhes' },
+    { title: `Detalhes${countryName ? ': ' + countryName : 'do país'}` },
   ];
 };
 
@@ -91,12 +91,10 @@ export default function CountryDetails() {
             </div>
           </div>
 
-          <img
-            className="aspect-video h-36 sm:h-40 md:h-52 lg:h-64 rounded-xl object-cover border"
-            loading="lazy"
-            decoding="async"
+          <Country.FlagImage
             src={country.flags.svg}
             alt={`Bandeira do país ${country.translations.por.common}`}
+            className="h-36 sm:h-40 md:h-52 lg:h-64"
           />
         </article>
       </section>

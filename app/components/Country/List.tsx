@@ -1,5 +1,6 @@
 import { Link } from '@remix-run/react';
 import type { CountryListItem } from '~/types/country'
+import FlagImage from './FlagImage';
 
 type Props = {
   countryList: CountryListItem[];
@@ -14,12 +15,10 @@ export default function List({ countryList }: Props) {
             to={`/paises/${country.cca3}`}
             className="bg-white rounded-xl px-2 py-3 pb-0 h-full block shadow-sm hover:shadow-md"
           >
-            <img
-              loading="lazy"
-              decoding="async"
-              className="rounded-md w-full aspect-video object-cover border"
+            <FlagImage
               src={country.flags.svg}
               alt={`Bandeira do país ${country.translations.por.common}`}
+              className="w-full"
             />
 
             <h2 className="font-bold text-xl text-center px-2 py-3">

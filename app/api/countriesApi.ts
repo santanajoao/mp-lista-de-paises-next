@@ -2,8 +2,10 @@ import type { CountryDetails, CountryDetailsResponse, CountryListItem } from "~/
 
 const apiUrl = 'https://restcountries.com/v3.1';
 
+const countryListItemFields = 'cca3,translations,flags';
+
 export const getAllCountries = async (): Promise<CountryListItem[]> => {
-  const response = await fetch(`${apiUrl}/all?fields=cca3,translations,flags`);
+  const response = await fetch(`${apiUrl}/all?fields=${countryListItemFields}`);
   const countryList: CountryListItem[] = await response.json();
   return countryList;
 };
@@ -13,3 +15,12 @@ export const getCountryDetails = async (countryCode: string): Promise<CountryDet
   const country = { ...data, languages: Object.values(data.languages) };
   return country;
 };
+
+export const getCountriesByCodes = async (countryCodes: string[]): Promise<CountryListItem[]> => {
+  if (countryCodes.length === 0) return [];
+  
+  const codesString = countryCodes.join(',');
+  const response = await fetch(`${apiUrl}/alpha?codes=${codesString}&fields=${countryListItemFields}`);
+  const countryList: CountryListItem[] = await response.json();
+  return countryList;
+}

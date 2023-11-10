@@ -28,8 +28,8 @@ export default function App() {
         <Links />
       </head>
       <body className="text-gray-800 bg-gray-100">
-        <header className="bg-white p-6">
-          <div className="m-auto max-w-[1366px] flex items-center">
+        <header className="bg-white">
+          <div className="m-auto max-w-[1366px] flex items-center p-6">
             <img
               className="h-14 aspect-square mr-2"
               src="/world-logo.svg"
@@ -40,7 +40,10 @@ export default function App() {
           </div>
         </header>
 
-        <Outlet />
+        <div className="m-auto max-w-[1366px] px-6">
+          <Outlet />
+        </div>
+
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

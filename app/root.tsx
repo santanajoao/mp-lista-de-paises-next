@@ -33,9 +33,9 @@ export default function App() {
       </head>
       <body className="text-gray-800 bg-gray-100">
         <header className="bg-white">
-          <div className="m-auto max-w-[1366px] flex items-center p-6">
+          <div className="m-auto max-w-[1366px] flex items-center p-2 sm:py-3 sm:px-6">
             <img
-              className="h-14 aspect-square mr-2"
+              className="h-10 aspect-square mr-2"
               src="/world-logo.svg"
               alt="Logo da página. Representação simplificada do globo terrestre."
             />
@@ -44,7 +44,7 @@ export default function App() {
           </div>
         </header>
 
-        <div className="m-auto max-w-[1366px] px-6">
+        <div className="m-auto max-w-[1366px] px-2 sm:px-6">
           <Outlet />
         </div>
 

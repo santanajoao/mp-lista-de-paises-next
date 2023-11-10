@@ -34,7 +34,7 @@ export default function CountryDetails() {
         </h1>
       </header>
 
-      <article className="bg-white display flex flex-col md:flex-row items-center justify-between py-6 px-12 rounded-2xl">
+      <article className="bg-white display flex flex-col md:flex-row items-center justify-between p-4 sm:py-6 sm:px-12 rounded-2xl">
         <div className="space-y-3 text-lg mb-4 lg:mb-0">
           <p>
             <strong>🏙️ Capital: </strong> {country.capital}
@@ -65,7 +65,7 @@ export default function CountryDetails() {
         </div>
 
         <img
-          className="aspect-video h-52 lg:h-64 rounded-3xl object-cover border"
+          className="aspect-video h-36 sm:h-40 md:h-52 lg:h-64 rounded-3xl object-cover border"
           loading="lazy"
           decoding="async"
           src={country.flags.svg}

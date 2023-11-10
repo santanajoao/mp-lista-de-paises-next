@@ -31,7 +31,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="text-gray-800 bg-gray-100">
+      <body className="text-gray-800 bg-gray-100 min-h-screen flex flex-col">
         <header className="bg-white">
           <div className="m-auto max-w-[1366px] flex items-center p-2 sm:py-3 sm:px-6">
             <img
@@ -44,7 +44,7 @@ export default function App() {
           </div>
         </header>
 
-        <div className="m-auto max-w-[1366px] px-2 sm:px-6">
+        <div className="m-auto max-w-[1366px] px-2 sm:px-6 flex-1 flex flex-col">
           <Outlet />
         </div>
 

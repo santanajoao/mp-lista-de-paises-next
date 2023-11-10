@@ -1,6 +1,6 @@
 import { json} from "@remix-run/node";
 import type { MetaFunction, LoaderFunctionArgs } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, isRouteErrorResponse, useLoaderData, useRouteError } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { getCountriesByCodes, getCountryDetails } from "~/api/countriesApi";
 import CountryList from "~/components/CountryList";
@@ -17,8 +17,27 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   invariant(params.code, 'params.code not found');
   const country = await getCountryDetails(params.code);
   
+  if ('status' in country) {
+    throw new Response('País não encontrado', { status: 404 });
+  }
+
   const borderCountries = await getCountriesByCodes(country.borders);
   return json({ country, borderCountries });
+};
+
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+  if (isRouteErrorResponse(error)) {
+    return (
+      <article className="text-center flex-1 flex flex-col items-center justify-center">
+        <img src="/world-logo.svg" className="" alt="" />
+        <h1 className="text-4xl font-bold ">{error.data}</h1>
+        <h2 className="text-3xl font-bold ">{error.status}</h2>
+
+        <Link to="/">Voltar</Link>
+      </article>
+    );
+  }
 };
 
 const formatter = new Intl.NumberFormat('pt-BR', { notation: 'compact' });
@@ -69,7 +88,7 @@ export default function CountryDetails() {
           </div>
 
           <img
-            className="aspect-video h-36 sm:h-40 md:h-52 lg:h-64 rounded-3xl object-cover border"
+            className="aspect-video h-36 sm:h-40 md:h-52 lg:h-64 rounded-xl object-cover border"
             loading="lazy"
             decoding="async"
             src={country.flags.svg}
@@ -80,8 +99,14 @@ export default function CountryDetails() {
 
       <section>
         <h2 className="text-2xl font-bold mb-3">Países que fazem fronteira</h2>
-
-        <CountryList countryList={borderCountries} />
+        
+        {borderCountries.length ? (
+          <CountryList countryList={borderCountries} />
+        ) : (
+          <p className="text-lg">
+            {country.translations.por.common} não faz fronteira com outros países
+          </p>
+        )}
       </section>
     </main>
   );

@@ -1,4 +1,4 @@
-import type { CountryDetails, CountryDetailsResponse, CountryListItem } from "~/types/country";
+import type { CountryDetails, CountryDetailsResponse, CountryListItem, ErrorResponse } from "~/types/country";
 
 const apiUrl = 'https://restcountries.com/v3.1';
 
@@ -9,9 +9,12 @@ export const getAllCountries = async (): Promise<CountryListItem[]> => {
   const countryList: CountryListItem[] = await response.json();
   return countryList;
 };
-export const getCountryDetails = async (countryCode: string): Promise<CountryDetails> => {
+
+export const getCountryDetails = async (countryCode: string): Promise<CountryDetails | ErrorResponse> => {
   const response = await fetch(`${apiUrl}/alpha/${countryCode}?fields=translations,flags,capital,languages,population,borders,continents`);
-  const data: CountryDetailsResponse = await response.json();
+  const data: CountryDetailsResponse | ErrorResponse = await response.json();
+  if ('status' in data) return data;
+  
   const country = { ...data, languages: Object.values(data.languages) };
   return country;
 };

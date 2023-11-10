@@ -18,6 +18,11 @@ export type CountryDetailsResponse = Omit<CountryListItem, 'cca3'> & {
   continents: string[]; 
 };
 
+export type ErrorResponse = {
+  status: number;
+  message: string;
+};
+
 export type CountryDetails = Omit<CountryDetailsResponse, 'languages'> & {
   languages: string[];
 }

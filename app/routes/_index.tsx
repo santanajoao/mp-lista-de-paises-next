@@ -1,5 +1,5 @@
 import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { getAllCountries } from "~/api/countriesApi";
 import CountryList from "~/components/CountryList";
 

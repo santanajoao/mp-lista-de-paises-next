@@ -1,9 +1,10 @@
-import { json} from "@remix-run/node";
+import { defer} from "@remix-run/node";
 import type { MetaFunction, LoaderFunctionArgs } from "@remix-run/node";
-import { Link, isRouteErrorResponse, useLoaderData, useRouteError } from "@remix-run/react";
+import { Await, Link, isRouteErrorResponse, useLoaderData, useRouteError } from "@remix-run/react";
+import { Suspense } from "react";
 import invariant from "tiny-invariant";
 import { getCountriesByCodes, getCountryDetails } from "~/api/countriesApi";
-import CountryList from "~/components/CountryList";
+import Country from "~/components/Country";
 import type { CountryDetails } from "~/types/country";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
@@ -21,8 +22,11 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     throw new Response('País não encontrado', { status: 404 });
   }
 
-  const borderCountries = await getCountriesByCodes(country.borders);
-  return json({ country, borderCountries });
+  const borderCountriesPromise = getCountriesByCodes(country.borders);
+  return defer({
+    country,
+    borderCountries: borderCountriesPromise,
+  });
 };
 
 export const ErrorBoundary = () => {
@@ -99,14 +103,18 @@ export default function CountryDetails() {
 
       <section>
         <h2 className="text-2xl font-bold mb-3">Países que fazem fronteira</h2>
-        
-        {borderCountries.length ? (
-          <CountryList countryList={borderCountries} />
-        ) : (
-          <p className="text-lg">
-            {country.translations.por.common} não faz fronteira com outros países
-          </p>
-        )}
+
+        <Suspense fallback={<Country.Skelleton />}>
+          <Await resolve={borderCountries}>
+            {(borderCountries) => borderCountries.length ? (
+              <Country.List countryList={borderCountries} />
+            ) : (
+            <p className="text-lg">
+              {country.translations.por.common} não faz fronteira com outros países
+            </p>
+            )}
+          </Await>
+        </Suspense>
       </section>
     </main>
   );

@@ -44,7 +44,7 @@ export default function App() {
           </div>
         </header>
 
-        <div className="m-auto max-w-[1366px] px-2 sm:px-6 flex-1 flex flex-col">
+        <div className="m-auto w-full max-w-[1366px] px-2 sm:px-6 flex-1 flex flex-col">
           <Outlet />
         </div>
 

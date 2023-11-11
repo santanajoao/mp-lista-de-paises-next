@@ -54,7 +54,17 @@ export default function CountryDetails() {
     <main className="pb-12">
       <section className="mb-6">
         <header className="relative">
-          <Link to="/" className="absolute bottom-0 left-0">Voltar</Link>
+          <Link to="/" className="flex absolute bottom-0 left-0">
+            <img
+              src="/arrow-left.svg"
+              loading="lazy"
+              decoding="async"
+              alt="Seta apontada para a esquerda"
+              className="mr-1"
+            />
+
+            Voltar
+          </Link>
 
           <h1 className="text-4xl py-6 font-bold text-center">
             {country.translations.por.common}

@@ -1,19 +1,15 @@
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 
-type Props = {
-  alt: string;
-  src: string;
-  className?: string;
-}
+type Props = ImageProps;
 
 export default function FlagImage({ className = '', alt, ...props }: Props) {
 	return (
 		<Image
-			className={`aspect-video rounded-xl object-cover border ${className}`}
+			className={`rounded-xl aspect-video object-cover border ${className}`}
+			width={600}
+			height={300}
 			{...props}
 			alt={alt}
-			height={200}
-			width={300}
 		/>
 	);
 }

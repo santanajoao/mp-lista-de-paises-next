@@ -12,13 +12,14 @@ export default function List({ countryList }: Props) {
 			{countryList.map((country) => (
 				<li key={country.cca3}>
 					<Link
-						href={`/paises/${country.cca3}`}
+						href={`/countries/${country.cca3}`}
 						className="bg-white rounded-xl px-2 py-3 pb-0 h-full block shadow-sm hover:shadow-md"
 					>
 						<FlagImage
 							src={country.flags.svg}
 							alt={`Bandeira do país ${country.translations.por.common}`}
-							className="w-full"
+							width={600}
+							height={300}
 						/>
 
 						<h2 className="font-bold text-xl text-center px-2 py-3">

@@ -12,10 +12,10 @@ export const getAllCountries = async (): Promise<CountryListItem[]> => {
 	return countryList;
 };
 
-export const getCountryDetails = async (countryCode: string): Promise<CountryDetails | ErrorResponse> => {
+export const getCountryDetails = async (countryCode: string): Promise<CountryDetails | null> => {
 	const response = await fetch(`${apiUrl}/alpha/${countryCode}?fields=translations,flags,capital,languages,population,borders,continents`);
 	const data: CountryDetailsResponse | ErrorResponse = await response.json();
-	if ('status' in data) return data;
+	if ('status' in data) return null;
   
 	const country = { ...data, languages: Object.values(data.languages) };
 	return country;

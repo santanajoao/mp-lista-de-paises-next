@@ -1,7 +1,7 @@
 import { getAllCountries } from '@/api/countriesApi';
 import Country from '@/components/Country';
 
-export default async function Home() {
+export default async function HomePage() {
 	const countryList = await getAllCountries();
 
 	return (

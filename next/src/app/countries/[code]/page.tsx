@@ -30,7 +30,7 @@ export default async function CountryDetailsPage({ params }: Props) {
 		<main className="pb-12">
 			<section className="mb-6">
 				<header className="relative">
-					<Link href="/" className="flex absolute bottom-0 left-0">
+					<Link href="/" className="flex items-center absolute bottom-0 left-0">
 						<Image
 							src="/arrow-left.svg"
 							alt="Seta apontada para a esquerda"

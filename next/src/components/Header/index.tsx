@@ -7,7 +7,7 @@ export default function Header() {
 				<Image
 					height={40}
 					width={40}
-					className="h-10 aspect-square mr-2"
+					className="h-10 w-10 mr-2"
 					src="/world-logo.svg"
 					alt="Logo da página. Representação simplificada do globo terrestre."
 				/>

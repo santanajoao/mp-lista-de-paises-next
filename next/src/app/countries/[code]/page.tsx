@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 import Country from '@/components/Country';
 import { Metadata } from 'next';
+import arrowLeft from 'public/arrow-left.svg';
 
 export const metadata: Metadata = {
 	title: 'Detalhes do país'
@@ -32,11 +33,9 @@ export default async function CountryDetailsPage({ params }: Props) {
 				<header className="relative">
 					<Link href="/" className="flex items-center absolute bottom-0 left-0">
 						<Image
-							src="/arrow-left.svg"
+							src={arrowLeft}
 							alt="Seta apontada para a esquerda"
 							className="mr-1"
-							width={14}
-							height={10}
 						/>
 
             Voltar
